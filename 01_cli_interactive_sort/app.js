@@ -1,5 +1,6 @@
 const readline = require("readline");
 
+
 let number = [];
 let words = [];
 
@@ -123,4 +124,5 @@ const game = () => {
     }
   );
 };
+
 game();
