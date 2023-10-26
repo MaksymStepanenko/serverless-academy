@@ -1,8 +1,9 @@
 const axios = require("axios");
 const TelegramBot = require("node-telegram-bot-api");
-const { Markup } = require("node-telegram-bot-api");
 
+const chatId = 221118983;
 const botToken = "6827974761:AAHzFsmGyEt4UMbP0aztHT3pagUEdsknvhg";
+
 
 const API = "http://api.openweathermap.org/data/2.5/forecast?limit=5&id=703448";
 const CITY = "Kyiv";
@@ -13,7 +14,6 @@ const SIX_HOURS = 6 * 60 * 1000;
 const bot = new TelegramBot(botToken, { polling: true });
 
 bot.on("message", (msg) => {
-  const chatId = msg.chat.id;
   if (msg.text === "Forecast in Nice") {
     bot.sendMessage(chatId, "Please choose intervals weather forecasts", {
       reply_markup: {
@@ -24,8 +24,7 @@ bot.on("message", (msg) => {
       },
     });
   } else if (msg.text === "at intervals of 3 hours") {
-    bot.sendMessage(chatId, "weather in Kyiv");
-     weatherInterval(THREE_HOURS, chatId);
+    bot.sendMessage(chatId, "weather in Kyiv", weatherInterval(THREE_HOURS));
   } else if (msg.text === "at intervals of 6 hours") {
     bot.sendMessage(chatId, "weather in Kyiv", weatherInterval(SIX_HOURS));
   } else {
@@ -40,14 +39,14 @@ bot.on("message", (msg) => {
     );
   }
 });
-const weatherInterval = (time,chatId) => {
-  getWeather(chatId);
+const weatherInterval = (time) => {
+  getWeather();
   setInterval(() => {
-    getWeather(chatId);
+    getWeather();
   }, time);
 };
 
-const getWeather = (chatId) => {
+const getWeather = () => {
   axios
     .get(`${API}?limit=5&id=703448&q=${CITY}&appid=${API_KEY}`)
     .then((response) => {
