@@ -3,7 +3,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
 
-const botToken = "6827974761:AAHzFsmGyEt4UMbP0aztHT3pagUEdsknvhg";
+const botToken = "";
 
 const API_MONO = "https://api.monobank.ua/bank/currency";
 
