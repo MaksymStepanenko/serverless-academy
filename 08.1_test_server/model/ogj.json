@@ -1,0 +1,12 @@
+{
+  "name": true,
+  "surname": {
+    "year": 2,
+    "date": {
+      "email": 3,
+      "phone": {
+        "isDone": true
+      }
+    }
+  }
+}
